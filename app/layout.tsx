@@ -14,14 +14,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "vartheme — Zero config dark mode for React",
-  description:
-    "Zero config, CSS variable based theme switching for React. Dark mode in one line.",
-  keywords: ["react", "dark mode", "theming", "css variables", "npm"],
-  openGraph: {
-    title: "vartheme",
-    description: "Zero config dark mode for React",
-    url: "https://vartheme.dev",
-    siteName: "vartheme",
+  description: "Zero config, CSS variable based theme switching for React.",
+  icons: {
+    icon: "/icon.png",
   },
 };
 
