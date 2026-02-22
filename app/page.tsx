@@ -1,65 +1,195 @@
-import Image from "next/image";
+"use client";
+
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Features from "@/components/Features";
+import CodeBlock from "@/components/CodeBlock";
+
+const INSTALL_CODE = `npm install vartheme`;
+
+const USAGE_CODE = `import { ThemeProvider, ThemeToggle } from 'vartheme'
+
+export default function App() {
+  return (
+    <ThemeProvider theme="ocean" mode="dark">
+      <YourApp />
+    </ThemeProvider>
+  )
+}`;
+
+const HOOK_CODE = `import { useThemeContext } from 'vartheme'
+
+function Navbar() {
+  const { resolvedMode, toggle, setTheme } = useThemeContext()
+
+  return (
+    <div>
+      <button onClick={toggle}>
+        {resolvedMode === 'dark' ? '☀️' : '🌙'}
+      </button>
+
+      <button onClick={() => setTheme('ocean')}>
+        Ocean
+      </button>
+    </div>
+  )
+}`;
+
+const CSS_CODE = `.card {
+  background: var(--vt-surface);
+  color: var(--vt-text);
+  border: 1px solid var(--vt-border);
+}
+
+.button {
+  background: var(--vt-primary);
+  color: white;
+}`;
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main>
+      <Navbar />
+      <Hero />
+      <Features />
+
+      {/* Code Section */}
+      <section
+        style={{
+          maxWidth: 800,
+          margin: "0 auto",
+          padding: "80px 24px",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: 60 }}>
+          <h2
+            style={{
+              fontSize: "clamp(28px, 4vw, 48px)",
+              fontWeight: 800,
+              letterSpacing: "-1px",
+              marginBottom: 16,
+            }}
+          >
+            Simple <span style={{ color: "var(--primary)" }}>by design.</span>
+          </h2>
+          <p
+            style={{
+              color: "var(--text-muted)",
+              fontSize: 16,
+              lineHeight: 1.7,
+            }}
+          >
+            Get started in minutes. No boilerplate, no complexity.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <div>
+            <p
+              style={{
+                color: "var(--text-muted)",
+                fontSize: 13,
+                marginBottom: 10,
+                fontFamily: "var(--font-geist-mono)",
+              }}
+            >
+              01 — Install
+            </p>
+            <CodeBlock code={INSTALL_CODE} language="bash" />
+          </div>
+
+          <div>
+            <p
+              style={{
+                color: "var(--text-muted)",
+                fontSize: 13,
+                marginBottom: 10,
+                fontFamily: "var(--font-geist-mono)",
+              }}
+            >
+              02 — Wrap your app
+            </p>
+            <CodeBlock code={USAGE_CODE} language="tsx" />
+          </div>
+
+          <div>
+            <p
+              style={{
+                color: "var(--text-muted)",
+                fontSize: 13,
+                marginBottom: 10,
+                fontFamily: "var(--font-geist-mono)",
+              }}
+            >
+              03 — Use the hook
+            </p>
+            <CodeBlock code={HOOK_CODE} language="tsx" />
+          </div>
+
+          <div>
+            <p
+              style={{
+                color: "var(--text-muted)",
+                fontSize: 13,
+                marginBottom: 10,
+                fontFamily: "var(--font-geist-mono)",
+              }}
+            >
+              04 — Use CSS variables
+            </p>
+            <CodeBlock code={CSS_CODE} language="css" />
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Footer */}
+      {/* Footer */}
+      <footer
+        style={{
+          borderTop: "1px solid var(--border)",
+          padding: "40px 24px",
+          textAlign: "center",
+          color: "var(--text-muted)",
+          fontSize: 14,
+        }}
+      >
+        <div
+          style={{
+            marginBottom: 16,
+            fontSize: 20,
+            fontWeight: 700,
+            color: "var(--text)",
+          }}
+        >
+          var<span style={{ color: "var(--primary)" }}>theme</span>
+        </div>
+        <p>
+          MIT License &middot;{" "}
+          <a
+            href="https://github.com/sumitt-wayne"
+            target="_blank"
+            style={{ color: "var(--primary)", textDecoration: "none" }}
+          >
+            sumitt-wayne
+          </a>{" "}
+          &middot;{" "}
+          <a
+            href="https://www.npmjs.com/package/vartheme"
+            target="_blank"
+            style={{ color: "var(--primary)", textDecoration: "none" }}
+          >
+            npm
+          </a>{" "}
+          &middot;{" "}
+          <a
+            href="https://github.com/sumitt-wayne/vartheme"
+            target="_blank"
+            style={{ color: "var(--primary)", textDecoration: "none" }}
+          >
+            GitHub
+          </a>
+        </p>
+      </footer>
+    </main>
   );
 }
