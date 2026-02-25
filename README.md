@@ -1,6 +1,5 @@
 # vartheme-site
-
-> Official landing page for [vartheme](https://www.npmjs.com/package/vartheme) — zero config, CSS variable based theme switching for React.
+🌐 **Website:** [vartheme.vercel.app](https://vartheme.vercel.app)
 
 ## About
 

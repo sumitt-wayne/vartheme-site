@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import CodeBlock from "@/components/CodeBlock";
+import Stats from "@/components/Stats";
 
 const INSTALL_CODE = `npm install vartheme`;
 
@@ -52,6 +53,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Features />
+      <Stats />
 
       {/* Code Section */}
       <section
