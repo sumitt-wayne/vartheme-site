@@ -50,15 +50,15 @@ export default function Hero() {
 
   useEffect(() => {
     const root = document.documentElement;
-    root.style.setProperty("--background",    colors.background);
-    root.style.setProperty("--surface",       colors.surface);
-    root.style.setProperty("--surface-2",     colors.surface);
-    root.style.setProperty("--border",        colors.border);
-    root.style.setProperty("--text",          colors.text);
-    root.style.setProperty("--text-muted",    colors.muted);
-    root.style.setProperty("--primary",       colors.primary);
-    root.style.setProperty("--primary-glow",  `${colors.primary}44`);
-    root.style.setProperty("--accent",        colors.accent);
+    root.style.setProperty("--background",   colors.background);
+    root.style.setProperty("--surface",      colors.surface);
+    root.style.setProperty("--surface-2",    colors.surface);
+    root.style.setProperty("--border",       colors.border);
+    root.style.setProperty("--text",         colors.text);
+    root.style.setProperty("--text-muted",   colors.muted);
+    root.style.setProperty("--primary",      colors.primary);
+    root.style.setProperty("--primary-glow", `${colors.primary}44`);
+    root.style.setProperty("--accent",       colors.accent);
     document.body.style.background = colors.background;
     document.body.style.color      = colors.text;
     localStorage.setItem(STORAGE_KEY_THEME, activeTheme);
@@ -98,6 +98,22 @@ export default function Hero() {
           from { opacity: 0; transform: translateY(30px); }
           to   { opacity: 1; transform: translateY(0); }
         }
+        .vt-float-card { display: block; }
+        .vt-install { flex-direction: row; }
+
+        @media (max-width: 768px) {
+          .vt-float-card { display: none !important; }
+          .vt-install {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            width: 100% !important;
+          }
+          .vt-install > * {
+            width: 100% !important;
+            text-align: center !important;
+            justify-content: center !important;
+          }
+        }
       `}</style>
 
       <section
@@ -107,13 +123,13 @@ export default function Hero() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "120px 24px 80px",
+          padding: "100px 16px 60px",
           position: "relative",
           overflow: "hidden",
           transition: "all 0.5s ease",
         }}
       >
-        {/* Big background glow */}
+        {/* Background glow */}
         <div style={{
           position: "absolute",
           top: "30%", left: "50%",
@@ -127,124 +143,86 @@ export default function Hero() {
           zIndex: 0,
         }} />
 
-        {/* ── Floating Cards ── */}
-
-        {/* Card 1 — top left — mock navbar */}
-        <div style={{
-          position: "absolute",
-          top: "12%", left: "4%",
-          width: 260,
-          background: `${colors.surface}CC`,
-          border: `1px solid ${colors.border}`,
-          borderRadius: 16,
-          padding: "14px 18px",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+        {/* Card 1 — top left */}
+        <div className="vt-float-card" style={{
+          position: "absolute", top: "12%", left: "4%", width: 260,
+          background: `${colors.surface}CC`, border: `1px solid ${colors.border}`,
+          borderRadius: 16, padding: "14px 18px",
+          backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
           boxShadow: `0 20px 60px ${colors.primary}22`,
           animation: "float1 5s ease-in-out infinite",
-          transition: "all 0.5s ease",
-          zIndex: 1,
+          transition: "all 0.5s ease", zIndex: 1,
         }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <div style={{ fontWeight: 700, color: colors.primary, fontSize: 14, transition: "color 0.5s ease" }}>MyApp</div>
+            <div style={{ fontWeight: 700, color: colors.primary, fontSize: 14 }}>MyApp</div>
             <div style={{ display: "flex", gap: 8 }}>
               {["Home", "Docs"].map(l => (
                 <span key={l} style={{ fontSize: 11, color: colors.muted }}>{l}</span>
               ))}
-              <div style={{ background: colors.primary, color: "#fff", borderRadius: 6, padding: "2px 10px", fontSize: 11, fontWeight: 600, transition: "background 0.5s ease" }}>
+              <div style={{ background: colors.primary, color: "#fff", borderRadius: 6, padding: "2px 10px", fontSize: 11, fontWeight: 600 }}>
                 Start
               </div>
             </div>
           </div>
         </div>
 
-        {/* Card 2 — top right — color palette */}
-        <div style={{
-          position: "absolute",
-          top: "10%", right: "4%",
-          width: 220,
-          background: `${colors.surface}CC`,
-          border: `1px solid ${colors.border}`,
-          borderRadius: 16,
-          padding: "16px 18px",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+        {/* Card 2 — top right */}
+        <div className="vt-float-card" style={{
+          position: "absolute", top: "10%", right: "4%", width: 220,
+          background: `${colors.surface}CC`, border: `1px solid ${colors.border}`,
+          borderRadius: 16, padding: "16px 18px",
+          backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
           boxShadow: `0 20px 60px ${colors.primary}22`,
           animation: "float2 6s ease-in-out infinite",
-          transition: "all 0.5s ease",
-          zIndex: 1,
+          transition: "all 0.5s ease", zIndex: 1,
         }}>
           <div style={{ fontSize: 11, color: colors.muted, marginBottom: 12 }}>Active Theme</div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {[colors.primary, colors.accent, colors.surface, colors.border, colors.text].map((c, i) => (
               <div key={i} style={{
                 width: 28, height: 28, borderRadius: 8,
-                background: c,
-                border: `1px solid ${colors.border}`,
+                background: c, border: `1px solid ${colors.border}`,
                 transition: "background 0.5s ease",
               }} />
             ))}
           </div>
-          <div style={{ marginTop: 12, fontSize: 12, color: colors.primary, fontWeight: 600, transition: "color 0.5s ease" }}>
+          <div style={{ marginTop: 12, fontSize: 12, color: colors.primary, fontWeight: 600 }}>
             {activeTheme.charAt(0).toUpperCase() + activeTheme.slice(1)}
           </div>
         </div>
 
-        {/* Card 3 — left middle — stat card */}
-        <div style={{
-          position: "absolute",
-          top: "52%", left: "2%",
-          width: 200,
-          background: `${colors.surface}CC`,
-          border: `1px solid ${colors.border}`,
-          borderRadius: 16,
-          padding: "18px",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+        {/* Card 3 — left middle */}
+        <div className="vt-float-card" style={{
+          position: "absolute", top: "52%", left: "2%", width: 200,
+          background: `${colors.surface}CC`, border: `1px solid ${colors.border}`,
+          borderRadius: 16, padding: "18px",
+          backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
           boxShadow: `0 20px 60px ${colors.primary}22`,
           animation: "float3 7s ease-in-out infinite",
-          transition: "all 0.5s ease",
-          zIndex: 1,
+          transition: "all 0.5s ease", zIndex: 1,
         }}>
           <div style={{ fontSize: 11, color: colors.muted, marginBottom: 6 }}>Bundle Size</div>
-          <div style={{ fontSize: 28, fontWeight: 800, color: colors.primary, transition: "color 0.5s ease" }}>~7kb</div>
+          <div style={{ fontSize: 28, fontWeight: 800, color: colors.primary }}>~7kb</div>
           <div style={{ fontSize: 11, color: colors.muted, marginTop: 4 }}>Zero dependencies</div>
-          <div style={{
-            marginTop: 12,
-            height: 4, borderRadius: 4,
-            background: colors.border,
-            overflow: "hidden",
-          }}>
-            <div style={{
-              width: "25%", height: "100%",
-              background: colors.primary,
-              borderRadius: 4,
-              transition: "background 0.5s ease",
-            }} />
+          <div style={{ marginTop: 12, height: 4, borderRadius: 4, background: colors.border, overflow: "hidden" }}>
+            <div style={{ width: "25%", height: "100%", background: colors.primary, borderRadius: 4 }} />
           </div>
         </div>
 
-        {/* Card 4 — right middle — code snippet */}
-        <div style={{
-          position: "absolute",
-          top: "50%", right: "2%",
-          width: 240,
-          background: `${colors.surface}CC`,
-          border: `1px solid ${colors.border}`,
-          borderRadius: 16,
-          padding: "16px 18px",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+        {/* Card 4 — right middle */}
+        <div className="vt-float-card" style={{
+          position: "absolute", top: "50%", right: "2%", width: 240,
+          background: `${colors.surface}CC`, border: `1px solid ${colors.border}`,
+          borderRadius: 16, padding: "16px 18px",
+          backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
           boxShadow: `0 20px 60px ${colors.primary}22`,
           animation: "float4 5.5s ease-in-out infinite",
-          transition: "all 0.5s ease",
-          zIndex: 1,
-          fontFamily: "monospace",
+          transition: "all 0.5s ease", zIndex: 1, fontFamily: "monospace",
         }}>
           <div style={{ fontSize: 10, color: colors.muted, marginBottom: 10 }}>Quick Start</div>
           <div style={{ fontSize: 12, lineHeight: 1.8 }}>
             <span style={{ color: colors.accent }}>import</span>
-            <span style={{ color: colors.text }}> {"{ "}</span>
+            <span style={{ color: colors.text }}>{" { "}</span>
             <span style={{ color: colors.primary }}>ThemeProvider</span>
             <span style={{ color: colors.text }}>{" }"}</span>
             <br />
@@ -263,62 +241,43 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Card 5 — bottom left — toggle preview */}
-        <div style={{
-          position: "absolute",
-          bottom: "12%", left: "6%",
-          width: 180,
-          background: `${colors.surface}CC`,
-          border: `1px solid ${colors.border}`,
-          borderRadius: 16,
-          padding: "16px 18px",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+        {/* Card 5 — bottom left */}
+        <div className="vt-float-card" style={{
+          position: "absolute", bottom: "12%", left: "6%", width: 180,
+          background: `${colors.surface}CC`, border: `1px solid ${colors.border}`,
+          borderRadius: 16, padding: "16px 18px",
+          backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
           boxShadow: `0 20px 60px ${colors.primary}22`,
           animation: "float2 8s ease-in-out infinite",
-          transition: "all 0.5s ease",
-          zIndex: 1,
+          transition: "all 0.5s ease", zIndex: 1,
         }}>
           <div style={{ fontSize: 11, color: colors.muted, marginBottom: 12 }}>Theme Toggle</div>
           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <div style={{
               width: 42, height: 42, borderRadius: "50%",
-              background: mode === "dark"
-                ? `radial-gradient(circle, #1E293B, #0F172A)`
-                : `radial-gradient(circle, #FEF3C7, #FDE68A)`,
+              background: mode === "dark" ? `radial-gradient(circle, #1E293B, #0F172A)` : `radial-gradient(circle, #FEF3C7, #FDE68A)`,
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 20,
-              boxShadow: mode === "dark"
-                ? `0 0 16px ${colors.primary}66`
-                : `0 0 16px #FCD34D88`,
-              transition: "all 0.5s ease",
+              boxShadow: mode === "dark" ? `0 0 16px ${colors.primary}66` : `0 0 16px #FCD34D88`,
             }}>
               {mode === "dark" ? "🌙" : "☀️"}
             </div>
             <div>
-              <div style={{ fontSize: 12, fontWeight: 600, color: colors.text }}>
-                {mode === "dark" ? "Dark" : "Light"}
-              </div>
+              <div style={{ fontSize: 12, fontWeight: 600, color: colors.text }}>{mode === "dark" ? "Dark" : "Light"}</div>
               <div style={{ fontSize: 10, color: colors.muted }}>Auto saved</div>
             </div>
           </div>
         </div>
 
-        {/* Card 6 — bottom right — themes count */}
-        <div style={{
-          position: "absolute",
-          bottom: "10%", right: "5%",
-          width: 200,
-          background: `${colors.surface}CC`,
-          border: `1px solid ${colors.border}`,
-          borderRadius: 16,
-          padding: "16px 18px",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+        {/* Card 6 — bottom right */}
+        <div className="vt-float-card" style={{
+          position: "absolute", bottom: "10%", right: "5%", width: 200,
+          background: `${colors.surface}CC`, border: `1px solid ${colors.border}`,
+          borderRadius: 16, padding: "16px 18px",
+          backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
           boxShadow: `0 20px 60px ${colors.primary}22`,
           animation: "float1 6.5s ease-in-out infinite",
-          transition: "all 0.5s ease",
-          zIndex: 1,
+          transition: "all 0.5s ease", zIndex: 1,
         }}>
           <div style={{ fontSize: 11, color: colors.muted, marginBottom: 10 }}>Built-in Themes</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
@@ -329,17 +288,15 @@ export default function Hero() {
                   <div style={{
                     width: 10, height: 10, borderRadius: "50%",
                     background: tc.primary,
-                    transition: "background 0.5s ease",
                     boxShadow: activeTheme === t.name ? `0 0 6px ${tc.primary}` : "none",
+                    transition: "all 0.5s ease",
                   }} />
                   <span style={{
                     fontSize: 12,
                     color: activeTheme === t.name ? tc.primary : colors.muted,
                     fontWeight: activeTheme === t.name ? 600 : 400,
                     transition: "color 0.5s ease",
-                  }}>
-                    {t.label}
-                  </span>
+                  }}>{t.label}</span>
                 </div>
               );
             })}
@@ -347,7 +304,11 @@ export default function Hero() {
         </div>
 
         {/* ── Center Content ── */}
-        <div style={{ position: "relative", zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{
+          position: "relative", zIndex: 2,
+          display: "flex", flexDirection: "column", alignItems: "center",
+          width: "100%", maxWidth: 700,
+        }}>
 
           {/* Badge */}
           <div style={{
@@ -367,14 +328,13 @@ export default function Hero() {
 
           {/* Heading */}
           <h1 style={{
-            fontSize: "clamp(40px, 6vw, 72px)",
+            fontSize: "clamp(32px, 6vw, 72px)",
             fontWeight: 800,
             textAlign: "center",
             letterSpacing: "-2px",
             lineHeight: 1.1,
             marginBottom: 24,
             color: colors.text,
-            maxWidth: 700,
             animation: "fade-up 0.6s ease 0.1s both",
             transition: "color 0.5s ease",
           }}>
@@ -386,7 +346,7 @@ export default function Hero() {
 
           {/* Subtitle */}
           <p style={{
-            fontSize: 18,
+            fontSize: "clamp(14px, 2vw, 18px)",
             color: colors.muted,
             textAlign: "center",
             maxWidth: 480,
@@ -394,15 +354,16 @@ export default function Hero() {
             marginBottom: 40,
             animation: "fade-up 0.6s ease 0.2s both",
             transition: "color 0.5s ease",
+            padding: "0 8px",
           }}>
             Zero config, CSS variable based theme switching.
             5 beautiful themes. Animated toggle. Under 7kb.
           </p>
 
           {/* Install command */}
-          <div style={{
+          <div className="vt-install" style={{
             display: "flex", alignItems: "center", gap: 12,
-            marginBottom: 40,
+            marginBottom: 40, width: "100%",
             animation: "fade-up 0.6s ease 0.3s both",
           }}>
             <div style={{
@@ -414,6 +375,7 @@ export default function Hero() {
               display: "flex", alignItems: "center", gap: 10,
               backdropFilter: "blur(8px)",
               transition: "all 0.5s ease",
+              flex: 1,
             }}>
               <span style={{ color: colors.muted }}>$</span>
               npm install vartheme
@@ -427,6 +389,7 @@ export default function Hero() {
                 fontSize: 15, fontWeight: 600, cursor: "pointer",
                 transition: "all 0.3s ease",
                 boxShadow: `0 8px 24px ${colors.primary}44`,
+                whiteSpace: "nowrap",
               }}
             >
               {copied ? "Copied! ✓" : "Copy"}

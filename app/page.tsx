@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import CodeBlock from "@/components/CodeBlock";
 import Stats from "@/components/Stats";
+import Footer from "@/components/Footer";
 
 const INSTALL_CODE = `npm install vartheme`;
 
@@ -143,55 +144,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      {/* Footer */}
-      <footer
-        style={{
-          borderTop: "1px solid var(--border)",
-          padding: "40px 24px",
-          textAlign: "center",
-          color: "var(--text-muted)",
-          fontSize: 14,
-        }}
-      >
-        <div
-          style={{
-            marginBottom: 16,
-            fontSize: 20,
-            fontWeight: 700,
-            color: "var(--text)",
-          }}
-        >
-          var<span style={{ color: "var(--primary)" }}>theme</span>
-        </div>
-        <p>
-          MIT License &middot;{" "}
-          <a
-            href="https://github.com/sumitt-wayne"
-            target="_blank"
-            style={{ color: "var(--primary)", textDecoration: "none" }}
-          >
-            sumitt-wayne
-          </a>{" "}
-          &middot;{" "}
-          <a
-            href="https://www.npmjs.com/package/vartheme"
-            target="_blank"
-            style={{ color: "var(--primary)", textDecoration: "none" }}
-          >
-            npm
-          </a>{" "}
-          &middot;{" "}
-          <a
-            href="https://github.com/sumitt-wayne/vartheme"
-            target="_blank"
-            style={{ color: "var(--primary)", textDecoration: "none" }}
-          >
-            GitHub
-          </a>
-        </p>
-      </footer>
+      <Footer />
     </main>
   );
 }
